@@ -95,6 +95,7 @@ public class PropertyService {
     }
 
     //Assign
+    //Eatzaz
     public void cancelProperty(Integer propertyId, Integer ownerId) {
         Property property = propertyRepository.findPropertyById(propertyId);
         Owner owner = ownerRepository.findOwnerById(ownerId);
@@ -108,6 +109,7 @@ public class PropertyService {
     }
 
     // عرض العقار لهذا المالك
+        //Eatzaz
     public Set<Property> getProperties(Integer customerId, Integer ownerId) {
         Customer customer = customerRepository.findCustomerById(customerId);
         Owner owner = ownerRepository.findOwnerById(ownerId);
@@ -119,6 +121,7 @@ public class PropertyService {
         }
         return owner.getProperties();
     }
+    //Eatzaz
 
     public void changeApproved(Integer ownerId, Integer propertyId) {
         Owner owner = ownerRepository.findOwnerById(ownerId);
@@ -132,6 +135,7 @@ public class PropertyService {
         property.setIsApproved(true);
         propertyRepository.save(property);
     }
+    //Eatzaz
 
     public Auction checkAuctionOfProperty(Integer propertyId) {
         Property property = propertyRepository.findPropertyById(propertyId);
@@ -144,6 +148,7 @@ public class PropertyService {
         }
         return auction;
     }
+    //Eatzaz
 
     public List<Property> classificationProperty(String title) {
         List<Property> properties = propertyRepository.findPropertyByTitle(title);
