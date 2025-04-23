@@ -74,7 +74,7 @@ public class BidService {
         bidRepository.delete(bid);
     }
 
-
+//Eatzaz
     public void bidding(Integer auctionId, Integer bidId, Integer customerId, Double amount) {
         Bid bid = bidRepository.findBidById(bidId);
         Customer customer = customerRepository.findCustomerById(customerId);
@@ -94,7 +94,7 @@ public class BidService {
             throw new ApiException("Bid is not open");
         }
 
-        if (bid.getExpirationDate() != null && bid.getExpirationDate().isBefore(LocalDateTime.now())) {
+        if (bid.getExpirationDate() != null && bid.getExpirationDate().isBefore(auction.getEndTime())) {
             throw new ApiException("Bid has expired");
         }
 
@@ -102,11 +102,10 @@ public class BidService {
             throw new ApiException("Bid amount is less than starting bid");
         }
 
-        bid.getCustomers().add(customer);
-        // Set the bid
+        auction.setStartingBid(amount);
         bid.setAmount(amount);
         bid.setAuction(auction);
-
+        bid.getCustomers().add(customer);
         bidRepository.save(bid);
     }
 
@@ -156,7 +155,7 @@ public class BidService {
             }
         }
     }
-
+//Eatzaz
     public void LossBid(Integer customerId, Integer auctionId) {
         List<Bid> bids = bidRepository.findAll();
         Customer customer = customerRepository.findCustomerById(customerId);
