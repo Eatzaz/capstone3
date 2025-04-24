@@ -94,7 +94,7 @@ public class BidService {
             throw new ApiException("Bid is not open");
         }
 
-        if (bid.getExpirationDate() != null && bid.getExpirationDate().isBefore(auction.getEndTime())) {
+        if (bid.getExpirationDate() != null && auction.getEndTime().isAfter(bid.getExpirationDate())) {
             throw new ApiException("Bid has expired");
         }
 
